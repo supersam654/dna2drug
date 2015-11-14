@@ -2,7 +2,6 @@
 
 var dna = angular.module('dna', [
   'ngRoute',
-  'ngResource',
   'dna.home'
 ])
 
