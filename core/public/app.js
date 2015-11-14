@@ -2,7 +2,8 @@
 
 var dna = angular.module('dna', [
   'ngRoute',
-  'ngResource'
+  'ngResource',
+  'dna.home'
 ])
 
 dna.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

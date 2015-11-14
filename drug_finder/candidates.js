@@ -1,4 +1,4 @@
-var candidateDrugs
+var candidateDrugs = {}
 candidateDrugs.EGFR = ["Gefitinib", "Cetuximab"]
 candidateDrugs.ERBB2 = ["Lapatinib", "Trastuzumab"]
 candidateDrugs.ERBB3 = ["MM-121", "MM-111", "AMG888"]
@@ -28,7 +28,7 @@ candidateDrugs.AKT3 = ["MK2206"]
 candidateDrugs.BRAF = ["vemurafenib"]
 candidateDrugs.CDK4 = ["PD0332991"]
 candidateDrugs.CDK6 = ["PD0332991"]
-candidateDrugs.Cyclin D1 = ["PD0332991"]
+candidateDrugs.Cyclin_D1 = ["PD0332991"]
 candidateDrugs.PIK3CA = ["BKM120", "GDC-0941"]
 candidateDrugs.PIK3R1 = ["BKM120", "GDC-0941"]
 candidateDrugs.PIK3R3 = ["BKM120", "GDC-0941"]

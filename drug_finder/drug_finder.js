@@ -12,6 +12,6 @@ function retrieveCandidates(gene) {
   return treatmentCandidates
 }
 
-exports.getCandidates(gene, callback) {
+exports.getCandidates = function (gene, callback) {
   callback(retrieveCandidates(gene))
 }
