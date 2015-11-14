@@ -1,0 +1,9 @@
+{
+  "mutations":
+  [
+    {
+      "name": "EGFR",
+      "sequence": "blahblah"
+    }
+  ]
+}
