@@ -1,0 +1,15 @@
+{
+  "name": "core",
+  "version": "0.0.1",
+  "description": "Webapp for finding effective drugs given gene mutations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "authors": [
+    "Kurt Carpenter",
+    "Sam Marder",
+    "Kunaal Naik"
+  ],
+  "license": "MIT"
+}
