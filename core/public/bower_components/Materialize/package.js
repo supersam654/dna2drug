@@ -3,7 +3,7 @@
 Package.describe({
   name: 'materialize:materialize',  // http://atmospherejs.com/materialize/materialize
   summary: 'Materialize (official): A modern responsive front-end framework based on Material Design',
-  version: '0.97.2',
+  version: '0.97.0',
   git: 'https://github.com/Dogfalo/materialize.git'
 });
 
@@ -11,9 +11,10 @@ Package.onUse(function (api) {
   api.versionsFrom('METEOR@1.0');
 
   api.use('jquery', 'client');
-  api.imply('jquery', 'client');
 
-  var assets = [
+  api.export('Materialize', 'client');
+
+  api.addFiles([
     'font/material-design-icons/Material-Design-Icons.eot',
     'font/material-design-icons/Material-Design-Icons.svg',
     'font/material-design-icons/Material-Design-Icons.ttf',
@@ -34,23 +35,7 @@ Package.onUse(function (api) {
     'font/roboto/Roboto-Thin.ttf',
     'font/roboto/Roboto-Thin.woff',
     'font/roboto/Roboto-Thin.woff2',
-  ];
-
-  addAssets(api, assets);
-  
-  api.addFiles([
-    'dist/js/materialize.js',
-    'dist/css/materialize.css'
+    'bin/materialize.css',
+    'bin/materialize.js',
   ], 'client');
-
-  api.export('Materialize', 'client');
 });
-
-
-function addAssets(api, assets){
-  if(api.addAssets){
-    api.addAssets(assets, 'client');
-  } else {
-    api.addFiles(assets, 'client', {isAsset: true});
-  }
-}

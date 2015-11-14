@@ -62,17 +62,16 @@
   "dependencies": {
     "jquery": ">=2.1.1"
   },
-  "devDependencies": {},
   "homepage": "https://github.com/Dogfalo/materialize",
-  "version": "0.97.2",
-  "_release": "0.97.2",
+  "version": "0.97.0",
+  "_release": "0.97.0",
   "_resolution": {
     "type": "version",
-    "tag": "v0.97.2",
-    "commit": "7409c65c78f164ff5f1f6b9b94cccd3f4cc578d5"
+    "tag": "v0.97.0",
+    "commit": "669355d82c08c912535bb4b69e878d8d8bfe04db"
   },
   "_source": "git://github.com/Dogfalo/materialize.git",
-  "_target": "~0.97.2",
+  "_target": "~0.97.0",
   "_originalSource": "materialize",
   "_direct": true
 }

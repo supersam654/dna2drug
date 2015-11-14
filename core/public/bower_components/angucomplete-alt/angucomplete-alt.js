@@ -22,7 +22,8 @@
   }
 }(window, function (angular) {
 
-  angular.module('angucomplete-alt', []).directive('angucompleteAlt', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
+  angular.module('angucomplete-alt', [] )
+    .directive('angucompleteAlt', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
     // keyboard events
     var KEY_DW  = 40;
     var KEY_RT  = 39;
@@ -30,6 +31,8 @@
     var KEY_LF  = 37;
     var KEY_ES  = 27;
     var KEY_EN  = 13;
+    var KEY_BS  =  8;
+    var KEY_DEL = 46;
     var KEY_TAB =  9;
 
     var MIN_LENGTH = 3;
@@ -92,28 +95,25 @@
         }
       });
 
-      scope.currentIndex = scope.focusFirst ? 0 : null;
+      scope.currentIndex = null;
       scope.searching = false;
-      unbindInitialValue = scope.$watch('initialValue', function(newval) {
-        if (newval) {
-          // remove scope listener
-          unbindInitialValue();
-          // change input
-          handleInputChange(newval, true);
-        }
-      });
+      unbindInitialValue = scope.$watch('initialValue', function(newval, oldval) {
 
-      scope.$watch('fieldRequired', function(newval, oldval) {
-        if (newval !== oldval) {
-          if (!newval) {
-            ctrl[scope.inputName].$setValidity(requiredClassName, true);
+        if (newval) {
+          unbindInitialValue();
+
+          if (typeof newval === 'object') {
+            scope.searchStr = extractTitle(newval);
+            callOrAssign({originalObject: newval});
+          } else if (typeof newval === 'string' && newval.length > 0) {
+            scope.searchStr = newval;
+          } else {
+            if (console && console.error) {
+              console.error('Tried to set initial value of angucomplete to', newval, 'which is an invalid value');
+            }
           }
-          else if (!validState || scope.currentIndex === -1) {
-            handleRequired(false);
-          }
-          else {
-            handleRequired(true);
-          }
+
+          handleRequired(true);
         }
       });
 
@@ -125,29 +125,6 @@
           clearResults();
         }
       });
-
-      scope.$on('angucomplete-alt:changeInput', function (event, elementId, newval) {
-        if (!!elementId && elementId === scope.id) {
-          handleInputChange(newval);
-        }
-      });
-
-      function handleInputChange(newval, initial) {
-        if (newval) {
-          if (typeof newval === 'object') {
-            scope.searchStr = extractTitle(newval);
-            callOrAssign({originalObject: newval});
-          } else if (typeof newval === 'string' && newval.length > 0) {
-            scope.searchStr = newval;
-          } else {
-            if (console && console.error) {
-              console.error('Tried to set ' + (!!initial ? 'initial' : '') + ' value of angucomplete to', newval, 'which is an invalid value');
-            }
-          }
-
-          handleRequired(true);
-        }
-      }
 
       // #194 dropdown list not consistent in collapsing (bug).
       function clickoutHandlerForDropdown(event) {
@@ -237,8 +214,8 @@
       function handleRequired(valid) {
         scope.notEmpty = valid;
         validState = scope.searchStr;
-        if (scope.fieldRequired && ctrl && scope.inputName) {
-          ctrl[scope.inputName].$setValidity(requiredClassName, valid);
+        if (scope.fieldRequired && ctrl) {
+          ctrl.$setValidity(requiredClassName, valid);
         }
       }
 
@@ -301,12 +278,6 @@
           if (event) {
             event.preventDefault();
           }
-
-          // cancel search timer
-          $timeout.cancel(searchTimer);
-          // cancel http request
-          cancelHttpRequest();
-
           setInputString(scope.searchStr);
         }
       }
@@ -419,17 +390,13 @@
               handleOverrideSuggestions();
             }
           }
-        } else if (which === KEY_ES) {
-          // This is very specific to IE10/11 #272
-          // without this, IE clears the input text
-          event.preventDefault();
         }
       }
 
       function httpSuccessCallbackGen(str) {
         return function(responseData, status, headers, config) {
           // normalize return obejct from promise
-          if (!status && !headers && !config && responseData.data) {
+          if (!status && !headers && !config) {
             responseData = responseData.data;
           }
           scope.searching = false;
@@ -440,19 +407,18 @@
       }
 
       function httpErrorCallback(errorRes, status, headers, config) {
-        // cancelled/aborted
-        if (status === 0 || status === -1) { return; }
-
         // normalize return obejct from promise
         if (!status && !headers && !config) {
           status = errorRes.status;
         }
-        if (scope.remoteUrlErrorCallback) {
-          scope.remoteUrlErrorCallback(errorRes, status, headers, config);
-        }
-        else {
-          if (console && console.error) {
-            console.error('http error');
+        if (status !== 0) {
+          if (scope.remoteUrlErrorCallback) {
+            scope.remoteUrlErrorCallback(errorRes, status, headers, config);
+          }
+          else {
+            if (console && console.error) {
+              console.error('http error');
+            }
           }
         }
       }
@@ -507,7 +473,7 @@
 
       function initResults() {
         scope.showDropdown = displaySearching;
-        scope.currentIndex = scope.focusFirst ? 0 : -1;
+        scope.currentIndex = -1;
         scope.results = [];
       }
 
@@ -515,9 +481,7 @@
         var i, match, s, value,
             searchFields = scope.searchFields.split(','),
             matches = [];
-        if (typeof scope.parseInput() !== 'undefined') {
-          str = scope.parseInput()(str);
-        }
+
         for (i = 0; i < scope.localData.length; i++) {
           match = false;
 
@@ -536,14 +500,13 @@
       }
 
       function checkExactMatch(result, obj, str){
-        if (!str) { return false; }
+        if (!str) { return; }
         for(var key in obj){
           if(obj[key].toLowerCase() === str.toLowerCase()){
             scope.selectResult(result);
-            return true;
+            return;
           }
         }
-        return false;
       }
 
       function searchTimerComplete(str) {
@@ -595,17 +558,18 @@
               image: image,
               originalObject: responseData[i]
             };
+
+            if (scope.autoMatch) {
+              checkExactMatch(scope.results[scope.results.length-1],
+                  {title: text, desc: description || ''}, scope.searchStr);
+            }
           }
 
         } else {
           scope.results = [];
         }
 
-        if (scope.autoMatch && scope.results.length === 1 &&
-            checkExactMatch(scope.results[0],
-              {title: text, desc: description || ''}, scope.searchStr)) {
-          scope.showDropdown = false;
-        } else if (scope.results.length === 0 && !displayNoResults) {
+        if (scope.results.length === 0 && !displayNoResults) {
           scope.showDropdown = false;
         } else {
           scope.showDropdown = true;
@@ -629,13 +593,12 @@
           scope.focusIn();
         }
         if (minlength === 0 && (!scope.searchStr || scope.searchStr.length === 0)) {
-          scope.currentIndex = scope.focusFirst ? 0 : scope.currentIndex;
           scope.showDropdown = true;
           showAll();
         }
       };
 
-      scope.hideResults = function() {
+      scope.hideResults = function(event) {
         if (mousedownOn &&
             (mousedownOn === scope.id + '_dropdown' ||
              mousedownOn.indexOf('angucomplete') >= 0)) {
@@ -693,7 +656,6 @@
 
       scope.inputChangeHandler = function(str) {
         if (str.length < minlength) {
-          cancelHttpRequest();
           clearResults();
         }
         else if (str.length === 0 && minlength === 0) {
@@ -761,6 +723,11 @@
       // set response formatter
       responseFormatter = callFunctionOrIdentity('remoteUrlResponseFormatter');
 
+      scope.$on('$destroy', function() {
+        // take care of required validity when it gets destroyed
+        handleRequired(true);
+      });
+
       // set isScrollOn
       $timeout(function() {
         var css = getComputedStyle(dd);
@@ -796,20 +763,18 @@
         matchClass: '@',
         clearSelected: '@',
         overrideSuggestions: '@',
-        fieldRequired: '=',
+        fieldRequired: '@',
         fieldRequiredClass: '@',
         inputChanged: '=',
         autoMatch: '@',
         focusOut: '&',
         focusIn: '&',
-        inputName: '@',
-        focusFirst: '@',
-        parseInput: '&'
+        inputName: '@'
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
       },
-      compile: function(tElement) {
+      compile: function(tElement, tAttrs) {
         var startSym = $interpolate.startSymbol();
         var endSym = $interpolate.endSymbol();
         if (!(startSym === '{{' && endSym === '}}')) {

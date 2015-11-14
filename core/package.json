@@ -1,8 +1,14 @@
 {
-  "name": "core",
-  "version": "0.0.1",
-  "description": "Webapp for finding effective drugs given gene mutations.",
-  "main": "index.js",
+  "name": "dna",
+  "version": "1.0.0",
+  "description": "DNA2Drug",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "1.x.x",
+    "express": "4.x.x",
+    "winston": "1.x.x"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

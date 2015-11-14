@@ -26,7 +26,7 @@
 
             var currentElement = document.querySelector(selector);
             if ( currentElement !== null) {
-              var elementOffset = currentElement.getBoundingClientRect().top + window.pageYOffset;
+              var elementOffset = currentElement.getBoundingClientRect().top + document.body.scrollTop;
 
               if (windowScroll > (elementOffset + offset)) {
                 if (value.done !== true) {
