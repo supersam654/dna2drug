@@ -1,4 +1,4 @@
-var candidateDrugs = {}
+candidateDrugs = {}
 candidateDrugs.EGFR = ["Gefitinib", "Cetuximab"]
 candidateDrugs.ERBB2 = ["Lapatinib", "Trastuzumab"]
 candidateDrugs.ERBB3 = ["MM-121", "MM-111", "AMG888"]
@@ -34,3 +34,5 @@ candidateDrugs.PIK3R1 = ["BKM120", "GDC-0941"]
 candidateDrugs.PIK3R3 = ["BKM120", "GDC-0941"]
 candidateDrugs.PTEN = ["BKM120", "GDC-0941"]
 candidateDrugs.INPP4B = ["BKM120", "GDC-0941"]
+
+exports.candidateDrugs= candidateDrugs
