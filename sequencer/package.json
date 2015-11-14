@@ -1,0 +1,11 @@
+{
+  "name": "sequencer",
+  "version": "1.0.0",
+  "description": "Compares mutation sequences",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kunaal Naik, Sam Marder, Kurt Carpenter",
+  "license": "MIT"
+}
