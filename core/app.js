@@ -15,7 +15,7 @@ function onStart () {
   logger.info('Server is starting.')
 }
 
-app.listen(process.env.PORT || 8000)
+app.listen(process.env.PORT || 8000, onStart)
 
 app.use(bodyParser.urlencoded({
   extended: true

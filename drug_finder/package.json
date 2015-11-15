@@ -4,6 +4,7 @@
   "description": "Finds the drugs that treat a condition",
   "main": "app.js",
   "dependencies": {
+    "cors": "^2.7.1",
     "express": "^4.13.3"
   },
   "devDependencies": {},
