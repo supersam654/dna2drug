@@ -13,18 +13,18 @@
                 },
                 {
                     "name": "EGFR_E282K",
-                    "index": 843,
+                    "index": 10,
                     "replaceWith": "A"
                 },
                 {
                     "name": "EGFR_C526S",
-                    "index": 1576,
+                    "index": 15,
                     "replaceWith": "C"
                 },
                 {
                     "name": "EGFR_T847K",
-                    "index": 2539,
-                    "replaceWith": "A"
+                    "index": 3633,
+                    "replaceWith": "G"
                 }
             ]
         },
