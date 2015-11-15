@@ -60,6 +60,7 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
         console.log('found an actual mutation: ' + $scope.mutations)
         getCandidates($scope.mutations.substring(0, $scope.mutations.indexOf('_')))
         $scope.foundMutation = true
+        $scope.getTrials()
       } else {
         $scope.foundMutation = false
       }

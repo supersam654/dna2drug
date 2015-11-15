@@ -42,6 +42,16 @@ nav img {
   font-size: 2rem;
 }
 
+.trial-card {
+  cursor: pointer;
+  font-size: 2rem;/*
+  overflow-y: scroll;*/
+}
+
 .section-prefix {
   margin-top: 10vh;
+}
+
+.section-tag {
+  font-size: 1.4rem;
 }

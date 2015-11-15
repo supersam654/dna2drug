@@ -2,13 +2,13 @@
   <h1 class="center"><span class="thin">DNA</span>
     <span class="">2</span>
     <span class="thin">Drug</span></h1>
-  <h5 class="center thin">Accurate Cancer Diagnoses. Personalized Patient Treatment Plans.</h5>
+  <h5 class="center thin">Applying precision medicine to breast cancer therapeutics</h5>
   <div class="row" ng-show="awaitingInput">
     <form class="col s12 center">
       <div class="row">
         <div class="input-field col m8 s10 offset-s1 offset-m2">
           <textarea ng-model="sequence.value" id="gene" class="materialize-textarea" spellcheck="false" autofocus></textarea>
-          <label for="gene">Enter DNA (exon only) Sequence</label>
+          <label for="gene">Enter Coding DNA Sequence</label>
         </div>
       </div>
       <a class="btn" ng-click="awaitingInput = false; processSequence(sequence);">Submit</a>
@@ -19,18 +19,18 @@
   <div class="row results-container" ng-show="!awaitingInput">
 
     <div class="col s12 center">
-      <h6 ng-show="foundMutation && !noMatch"><u>Identified Mutation(s):</u></h6>
-      <h6 ng-show="!foundMutation && ! noMatch"><u>Identified No Mutations in:</u></h6>
+      <h5 ng-show="foundMutation && !noMatch"><u>Identified Mutation(s):</u></h5>
+      <h5 ng-show="!foundMutation && ! noMatch"><u>Identified No Mutations in:</u></h5>
       <h2>{{mutations}}</h2>
     </div>
   </div>
 
   <div class="section">
     <div class="container">
-        <span class="col s8 center" ng-show="!awaitingInput && foundMutation && !noMatch"><i>Potential</i> treatments for your patient (mutation {{mutations}}):</span>
+        <span class="col s8 center section-tag" ng-show="!awaitingInput && foundMutation && !noMatch"><i>Potential</i> treatments for your patient (mutation {{mutations}}):</span>
         <div class="row treatments-container" ng-show="!awaitingInput && foundMutation && !noMatch">
           <div ng-repeat="drug in drugs" class="col s6 m4">
-            <div class="card-panel treatment-card hoverable grey white-text"
+            <div class="card-panel treatment-card hoverable teal white-text"
                 ng-click="openTreatmentModal(drug)">
               {{drug}}
             </div>
@@ -38,6 +38,52 @@
        </div>
     </div>
   </div>
+
+  <div class="section">
+    <div class="container">
+        <span class="col s8 center section-tag" ng-show="!awaitingInput && foundMutation && !noMatch">Clinical trials relevant to your patient (mutation {{mutations}}):</span>
+        <div class="row">
+
+          <div class="col s4 row">
+            <div class="row treatments-container" ng-show="!awaitingInput && foundMutation && !noMatch">
+              <div ng-repeat="trial in trials" class="col s12">
+                <a ng-href="{{trial.url}}" ng-show="$index < 3" target="_blank">
+                  <div class="card-panel trial-card hoverable blue-grey white-text">
+                    {{trial.title}}
+                  </div>
+                </a>
+              </div>
+           </div>
+         </div>
+
+         <div class="col s4 row">
+           <div class="row treatments-container" ng-show="!awaitingInput && foundMutation && !noMatch">
+             <div ng-repeat="trial in trials" class="col s12">
+               <a ng-href="{{trial.url}}" ng-show="$index >= 3 && $index < 7" target="_blank">
+                 <div class="card-panel trial-card hoverable blue-grey white-text">
+                   {{trial.title}}
+                 </div>
+               </a>
+             </div>
+          </div>
+        </div>
+
+        <div class="col s4 row">
+          <div class="row treatments-container" ng-show="!awaitingInput && foundMutation && !noMatch">
+            <div ng-repeat="trial in trials" class="col s12">
+              <a ng-href="{{trial.url}}" ng-show="$index >= 7" target="_blank">
+                <div class="card-panel trial-card hoverable blue-grey white-text">
+                  {{trial.title}}
+                </div>
+              </a>
+            </div>
+         </div>
+       </div>
+
+      </div>
+    </div>
+  </div>
+
 
   <!--Modals-->
   <div id="modal-instructions" class="modal bottom-sheet">
@@ -48,7 +94,7 @@
           Using this and extensive databases, our servers correlate the mutation with a subset of breast cancer and determine an optimal drug/treatment regimen for the patient.
       </p>
       <p>Our analysis and predictive algorithms are supported by extensive empirical data regarding genetic mutations strongly correlated to tumor growth.
-          To learn more about our empirical data sets and search engine, contact us at <a href="mailto:info@memorahealth.com">info@memorahealth.com.
+          To learn more about our empirical data sets and search engine, contact us at <a href="mailto:info@memorahealth.com">info@memorahealth.com.</a>
     </div>
   </div>
 
