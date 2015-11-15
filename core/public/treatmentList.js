@@ -1,6 +1,7 @@
-var treatmentList;
-treatmentList.Geftinib = {
-  "name": "Geftinib",
+var treatmentList= {}
+
+treatmentList.Gefitinib = {
+  "name": "Gefitinib",
   "gene": "EGFR",
   "url": "http://www.sciencemag.org/content/305/5687/1163",
   "description": "Gefitinib is the first selective inhibitor of epidermal growth factor receptor's (EGFR) tyrosine kinase domain. Thus gefitinib is an EGFR inhibitor. The target protein (EGFR) is a family of receptors which includes Her1(erb-B1), Her2(erb-B2), and Her 3(erb-B3). EGFR is overexpressed in the cells of certain types of human carcinomas - for example in lung and breast cancers. This leads to inappropriate activation of the anti-apoptotic Ras signalling cascade, eventually leading to uncontrolled cell proliferation. Research on gefitinib-sensitive non-small cell lung cancers has shown that a mutation in the EGFR tyrosine kinase domain is responsible for activating anti-apoptotic pathways. These mutations tend to confer increased sensitivity to tyrosine kinase inhibitors such as gefitinib and erlotinib. Of the types of non-small cell lung cancer histologies, adenocarcinoma is the type that most often harbors these mutations. These mutations are more commonly seen in Asians, women, and non-smokers (who also tend to more often have adenocarcinoma).¶ Gefitinib inhibits EGFR tyrosine kinase by binding to the adenosine triphosphate (ATP)-binding site of the enzyme. Thus the function of the EGFR tyrosine kinase in activating the anti-apoptotic Ras signal transduction cascade is inhibited, and malignant cells are inhibited."
@@ -27,14 +28,14 @@ treatmentList.Trastuzumab = {
   "description": "Trastuzumab binds to domain IV of the extracellular segment of the HER2/neu receptor. Cells treated with trastuzumab undergo arrest during the G1 phase of the cell cycle so there is reduced proliferation. It has been suggested that trastuzumab induces some of its effect by downregulation of HER2/neu leading to disruption of receptor dimerization and signaling through the downstream PI3K cascade. In addition, trastuzumab suppresses angiogenesis both by induction of antiangiogenic factors and repression of proangiogenic factors. It is thought that a contribution to the unregulated growth observed in cancer could be due to proteolytic cleavage of HER2/neu that results in the release of the extracellular domain. One of the most relevant proteins that trastuzumab activates is the tumor suppressor p27 (kip1), also known as CDKN1B. Trastuzumab activates p27 by simultaneously inhibiting PI3K/Akt, Mirk, hKIS, pathways Trastuzumab has been shown to inhibit HER2/neu ectodomain cleavage in breast cancer cells."
 }
 
-treatmentList.MM-121 = {
+treatmentList["MM-121"] = {
   "name": "MM-121",
   "gene": "ERBB3",
   "url": "http://www.cancer.gov/publications/dictionaries/cancer-drug?cdrid=613844",
   "description": "A fully human monoclonal antibody directed against the human epidermal growth factor receptor ErbB3 (Her3) with potential antineoplastic activity. Seribantumab binds to binds to and inhibits ErbB3 activation, which may result in inhibition of ErbB3-dependent PI3K/Akt signaling and so inhibition of cellular proliferation and differentiation. ErbB3, a member of the epidermal growth factor receptor (EGFR) family of receptor tyrosine kinases, is frequently overexpressed in solid tumors, including breast, lung, and colorectal tumors of epithelial origin; it has no active kinase domain itself but is activated through heterodimerization with other members of the EGFR receptor family that do. Check for active clinical trials using this agent."
 }
 
-treatmentList.MM-111 = {
+treatmentList["MM-111"] = {
   "name": "MM-111",
   "gene": "ERBB3",
   "url": "http://www.ncbi.nlm.nih.gov/pubmed/22248472",

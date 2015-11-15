@@ -20,7 +20,7 @@
 
     <div class="col s12 center">
       <h6 ng-show="foundMutation && !noMatch"><u>Identified Mutation(s):</u></h6>
-      <h6 ng-show="!foundMutation && ! noMatch"><u>Identified No Mutations in:</h6>
+      <h6 ng-show="!foundMutation && ! noMatch"><u>Identified No Mutations in:</u></h6>
       <h2>{{mutations}}</h2>
     </div>
   </div>
@@ -28,7 +28,7 @@
   <div class="section">
     <div class="container">
         <span class="col s8 center" ng-show="!awaitingInput && foundMutation && !noMatch"><i>Potential</i> treatments for your patient (mutation {{mutations}}):</span>
-        <div class="row treatments-container" ng-show="!awaitingInput">
+        <div class="row treatments-container" ng-show="!awaitingInput && foundMutation && !noMatch">
           <div ng-repeat="drug in drugs" class="col s6 m4">
             <div class="card-panel treatment-card hoverable grey white-text"
                 ng-click="openTreatmentModal(drug)">
@@ -71,16 +71,16 @@
       <h4>Contact</h4>
       <p>We're a team of students from Harvard Medical School and the Georgia
           Institute of Technology. Collectively, our team brings together clinical insight from medical students and extensive development experience from engineering students to develop digital health interventions that are easy-to-use and offer substantial value to both physicians and patients.
-          For any further inquiries, feel free to contact us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</p>
+          For any further inquiries, feel free to contact us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</a></p>
     </div>
   </div>
 
   <div id="modal-treatment" class="modal bottom-sheet">
     <div class="modal-content">
       <h4>{{treatment.name}}</h4>
-      <h6>Treats genes: {{treatment.treats}}</h6>
+      <h6>Treats genes: {{treatment.gene}}</h6>
       <p>{{treatment.description}}</p>
-      <p>Reference: {{treatment.url}}</p>
+      <p>Reference: <a href="{{treatment.url}}">{{treatment.url}}</a></p>
     </div>
   </div>
 </div>

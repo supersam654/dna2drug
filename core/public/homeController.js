@@ -73,9 +73,7 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   }
 
   $scope.openTreatmentModal = function(drug) {
-    $scope.treatment.name = drug
-    $scope.treatment.treats = treatmentList[drug].treats
-    $scope.treatment.description = treatmentList[drug].description
+    $scope.treatment = treatmentList[drug]
     $('#modal-treatment').openModal()
   }
 }])
