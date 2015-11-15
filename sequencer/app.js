@@ -3,29 +3,21 @@ var bodyParser = require('body-parser')
 
 var app = express()
 var logger = require('winston')
-
 var MutationParser = require('./MutationParser')
+var cors = require('cors')
 
-app.use(bodyParser.urlencoded({ extended: true }))
-
-function onStart () {
-  logger.info('Server is starting.')
-}
-
-app.listen(process.env.PORT || 8000)
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', function (req, res) {
   logger.info('in root')
 })
 
-app.get('/getMutations:', function (req, res) {
-  var sequence = req.body.sequence
-  MutationParser.getMutation(sequence, function(result) {
+app.get('/getMutations', function (req, res) {
+  var gene = req.query.gene
+  MutationParser.matchMutation(gene, function(result) {
+    console.log('result is: ' + result)
     res.json({mutation: result})
   })
 })
+
+app.listen(process.env.PORT || 9000)
