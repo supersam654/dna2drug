@@ -57,7 +57,6 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
         $scope.noMatch = false
       }
       if ($scope.mutations.includes('_') && $scope.mutations != 'No match found!') {
-        console.log('found an actual mutation: ' + $scope.mutations)
         getCandidates($scope.mutations.substring(0, $scope.mutations.indexOf('_')))
         $scope.foundMutation = true
         $scope.getTrials()
@@ -78,7 +77,6 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
       mutation: $scope.mutations
     }).$promise.then(function successCallback(response) {
       $scope.trials = response.trials
-      console.log('got the trials' + JSON.stringify($scope.trials))
     }, function errorCallback(response) {
       console.log(response)
     })

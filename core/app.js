@@ -29,10 +29,8 @@ app.get('/', function (req, res) {
 })
 
 app.get('/getTrials', function (req, res) {
-  console.log('getting trials')
   var mutation = req.query.mutation
   Trials.getTrials(mutation, function(result) {
-    console.log('trials result is:' + result)
     res.json({trials: result})
   })
 })
