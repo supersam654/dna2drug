@@ -10,6 +10,8 @@ home.config(['$routeProvider', function ($routeProvider) {
 home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope, $window, $resource) {
   var possibleCandidates
   var completed = 0
+  $scope.awaitingInput = true
+  $scope.treatment = {}
 
   function getCandidates(geneName) {
     $resource('http://localhost:10000/get-candidates', {}).get({
@@ -49,12 +51,17 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
       gene: sequence
     }).$promise.then(function successCallback(response) {
       $scope.mutations = response.mutation
+      if ($scope.mutations === 'No match found!') {
+        $scope.noMatch = true
+      } else {
+        $scope.noMatch = false
+      }
       if ($scope.mutations.includes('_') && $scope.mutations != 'No match found!') {
         console.log('found an actual mutation: ' + $scope.mutations)
         getCandidates($scope.mutations.substring(0, $scope.mutations.indexOf('_')))
-        $scope.foundMutation = false
-      } else {
         $scope.foundMutation = true
+      } else {
+        $scope.foundMutation = false
       }
     }, function errorCallback(response) {
       console.log(response)
@@ -74,5 +81,10 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
     }, function errorCallback(response) {
       console.log(response)
     })
+  }
+
+  $scope.openTreatmentModal = function(drug) {
+    $scope.treatment = treatmentList[drug]
+    $('#modal-treatment').openModal()
   }
 }])
