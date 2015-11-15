@@ -49,8 +49,12 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
       gene: sequence
     }).$promise.then(function successCallback(response) {
       $scope.mutations = response.mutation
-      if ($scope.mutations.includes('_')) {
-        getCandidates($scope.mutations)
+      if ($scope.mutations.includes('_') && $scope.mutations != 'No match found!') {
+        console.log('found an actual mutation: ' + $scope.mutations)
+        getCandidates($scope.mutations.substring(0, $scope.mutations.indexOf('_')))
+        $scope.foundMutation = false
+      } else {
+        $scope.foundMutation = true
       }
     }, function errorCallback(response) {
       console.log(response)
@@ -58,7 +62,6 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   }
 
   $scope.processSequence = function(sequence) {
-    console.log('this is the sequence: ' + sequence.value)
     getMutations(sequence.value)
   }
 }])
