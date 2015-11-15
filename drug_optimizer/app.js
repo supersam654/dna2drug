@@ -1,11 +1,20 @@
 var express = require('express')
 var DrugOptimizer = require('./drug_optimizer')
-
 var app = express()
+var cors = require('cors')
+
+app.use(cors())
+
 app.get('/get-solution', function(req, res) {
-  var gene = req.body.gene
   DrugOptimizer.findTreatment(function(result) {
     res.json({candidates: result})
+  })
+})
+
+app.get('/add-candidates', function(req, res) {
+  var candidates = req.query.candidates
+  DrugOptimizer.addCandidates(candidates, function() {
+    res.send('finish')
   })
 })
 
