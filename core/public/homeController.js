@@ -14,7 +14,7 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   $scope.treatment = {}
 
   function getCandidates(geneName) {
-    $resource('http://localhost:10000/get-candidates', {}).get({
+    $resource('http://dna2drug.com:10000/get-candidates', {}).get({
       gene: geneName
     }).$promise.then(function successCallback(response) {
       possibleCandidates = response.candidates
@@ -25,7 +25,7 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   }
 
   function addCandidates(candidates) {
-    $resource('http://localhost:12000/add-candidates', {}).get({
+    $resource('http://dna2drug.com:12000/add-candidates', {}).get({
       candidates: candidates
     }).$promise.then(function successCallback(response) {
       completed++
@@ -38,7 +38,7 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   }
 
   function selectOptimal() {
-    $resource('http://localhost:12000/get-solution', {}).get()
+    $resource('http://dna2drug.com:12000/get-solution', {}).get()
         .$promise.then(function successCallback(response) {
           $scope.drugs = response.candidates
     }, function errorCallback(response) {
@@ -47,7 +47,7 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   }
 
   function getMutations(sequence) {
-    $resource('http://localhost:9000/getMutations', {}).get({
+    $resource('http://dna2drug.com:9000/getMutations', {}).get({
       gene: sequence
     }).$promise.then(function successCallback(response) {
       $scope.mutations = response.mutation
