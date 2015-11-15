@@ -4,6 +4,7 @@
   "description": "DNA2Drug",
   "main": "app.js",
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "body-parser": "1.x.x",
     "express": "4.x.x",
     "request": "^2.65.0",
