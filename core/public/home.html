@@ -6,11 +6,17 @@
     <form class="col s12 center">
       <div class="row">
         <div class="input-field col s6 offset-s3">
-          <textarea id="gene" class="materialize-textarea" autofocus></textarea>
+          <textarea ng-model="sequence.value" id="gene" class="materialize-textarea" autofocus></textarea>
           <label for="gene">Enter Genome Sequence</label>
         </div>
       </div>
-      <a class="btn">Submit</a>
+      <a class="btn" ng-click="processSequence(sequence)">Submit</a>
     </form>
+  </div>
+
+
+  <div>
+    <p>{{mutations}}</p>
+    <p>{{drugs}}</p>
   </div>
 </div>

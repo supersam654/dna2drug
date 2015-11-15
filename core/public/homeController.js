@@ -8,8 +8,8 @@ home.config(['$routeProvider', function ($routeProvider) {
 }])
 
 home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope, $window, $resource) {
-  var possibleCandidates;
-  var completed = 0;
+  var possibleCandidates
+  var completed = 0
 
   function getCandidates(geneName) {
     $resource('http://localhost:10000/get-candidates', {}).get({
@@ -19,7 +19,7 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
       addCandidates(possibleCandidates)
     }, function errorCallback(response) {
       console.log(response)
-    });
+    })
   }
 
   function addCandidates(candidates) {
@@ -27,33 +27,38 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
       candidates: candidates
     }).$promise.then(function successCallback(response) {
       completed++
-      if (completed == 2) {
-            selectOptimal();
+      if (completed == 1) { // used for multiple genes
+            selectOptimal()
       }
     }, function errorCallback(response) {
       console.log(response)
-    });
+    })
   }
 
   function selectOptimal() {
     $resource('http://localhost:12000/get-solution', {}).get()
         .$promise.then(function successCallback(response) {
+          $scope.drugs = response.candidates
     }, function errorCallback(response) {
       console.log(response)
-    });
+    })
   }
 
-  function main() {
-    var count = 0
-    for (count; count < 2; count++) {
-      if (count == 0) {
-        getCandidates("KIT")
-      } else {
-        getCandidates("FGFR2")
+  function getMutations(sequence) {
+    $resource('http://localhost:9000/getMutations', {}).get({
+      gene: sequence
+    }).$promise.then(function successCallback(response) {
+      $scope.mutations = response.mutation
+      if ($scope.mutations.includes('_')) {
+        getCandidates($scope.mutations)
       }
-    }
+    }, function errorCallback(response) {
+      console.log(response)
+    })
   }
 
-  main()
-
+  $scope.processSequence = function(sequence) {
+    console.log('this is the sequence: ' + sequence.value)
+    getMutations(sequence.value)
+  }
 }])

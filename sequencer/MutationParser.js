@@ -2,6 +2,7 @@ var mutations = require('./mutations.json')
 
 exports.matchMutation = function(seq, callback) {
   console.log('matching mutations')
+  var matched = false
   for (var i = 0; i < mutations.genes.length; i++) {
     var result = checkMutation(seq, mutations.genes[i])
     if (result != false) {
@@ -33,7 +34,7 @@ function checkMutation(seq, gene) {
   }
 
   if (mutations.length == 0) {
-    return 'BASE'
+    return gene.name
   }
   return mutations.toString()
 }
