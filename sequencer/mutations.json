@@ -8,12 +8,12 @@
             [
                 {
                     "name": "EGFR_T273A",
-                    "index": 3,
+                    "index": 816,
                     "replaceWith": "G"
                 },
                 {
                     "name": "EGFR_E282K",
-                    "index": 844,
+                    "index": 843,
                     "replaceWith": "A"
                 },
                 {
@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "EGFR_T847K",
-                    "index": 2449,
+                    "index": 2539,
                     "replaceWith": "A"
                 }
             ]
@@ -100,7 +100,7 @@
                 {
                     "name": "ERBB3_A378P",
                     "index": 1131,
-                    "replaceWith": "G"
+                    "replaceWith": "C"
                 },
                 {
                     "name": "ERBB3_L783V",
@@ -141,13 +141,48 @@
                     "replaceWith": "G"
                 },
                 {
+                    "name": "ERBB4_H295Q",
+                    "index": 884,
+                    "replaceWith": "G"
+                },
+                {
+                    "name": "ERBB4_L450L",
+                    "index": 1349,
+                    "replaceWith": "A"
+                },
+                {
                     "name": "ERBB4_G500E",
                     "index": 1498,
                     "replaceWith": "A"
                 },
                 {
+                    "name": "ERBB4_L686F",
+                    "index": 2057,
+                    "replaceWith": "C"
+                },
+                {
                     "name": "ERBB4_T703K",
                     "index": 2107,
+                    "replaceWith": "A"
+                },
+                {
+                    "name": "ERBB4_R711C",
+                    "index": 2130,
+                    "replaceWith": "T"
+                },
+                {
+                    "name": "ERBB4_L913L",
+                    "index": 2738,
+                    "replaceWith": "A"
+                },
+                {
+                    "name": "ERBB4_L1008L",
+                    "index": 3023,
+                    "replaceWith": "A"
+                },
+                {
+                    "name": "ERBB4_P1153H",
+                    "index": 3457,
                     "replaceWith": "A"
                 },
                 {
@@ -156,8 +191,23 @@
                     "replaceWith": "A"
                 },
                 {
+                    "name": "ERBB4_Y1242C",
+                    "index": 3724,
+                    "replaceWith": "G"
+                },
+                {
+                    "name": "ERBB4_S1246N",
+                    "index": 3736,
+                    "replaceWith": "A"
+                },
+                {
                     "name": "ERBB4_P1292S",
                     "index": 3873,
+                    "replaceWith": "T"
+                },
+                {
+                    "name": "ERBB4_R1304W",
+                    "index": 3909,
                     "replaceWith": "T"
                 }
 
