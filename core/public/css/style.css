@@ -29,9 +29,19 @@ nav img {
   cursor: pointer;
   position: absolute;
   left: 0;
+  top: 64px;
 }
 
 .results-container {
   background-color: #EEE;
   margin-top:15vh;
+}
+
+.treatment-card {
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.section-prefix {
+  margin-top: 10vh;
 }

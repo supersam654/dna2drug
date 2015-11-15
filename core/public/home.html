@@ -6,8 +6,8 @@
   <div class="row" ng-show="awaitingInput">
     <form class="col s12 center">
       <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <textarea ng-model="sequence.value" id="gene" class="materialize-textarea" autofocus></textarea>
+        <div class="input-field col m8 s10 offset-s1 offset-m2">
+          <textarea ng-model="sequence.value" id="gene" class="materialize-textarea" spellcheck="false" autofocus></textarea>
           <label for="gene">Enter Genome Sequence</label>
         </div>
       </div>
@@ -19,22 +19,24 @@
   <div class="row results-container" ng-show="!awaitingInput">
 
     <div class="col s12 center">
-      <h6>We identified a mutation:</h6>
+      <h6 ng-show="foundMutation && !noMatch">We identified a mutation:</h6>
+      <h6 ng-show="!foundMutation && ! noMatch">We identified no mutations in: </h6>
       <h2>{{mutations}}</h2>
-      <p>{{drugs}}</p>
     </div>
   </div>
 
-  <div class="container">
-      <span class="col s8 center" ng-show="!awaitingInput">Current treatments which may be helpful in treating cancer caused by the {{mutations}} mutation:</span>
-      <div class="row treatments-container" ng-show="!awaitingInput">
-
-        <div ng-repeat="drug in drugs" class="col s6 m4">
-          <div class="card-panel">
-            {{drug}}
+  <div class="section">
+    <div class="container">
+        <span class="col s8 center" ng-show="!awaitingInput && foundMutation && !noMatch">Current treatments which may be helpful in treating cancer caused by the {{mutations}} mutation:</span>
+        <div class="row treatments-container" ng-show="!awaitingInput">
+          <div ng-repeat="drug in drugs" class="col s6 m4">
+            <div class="card-panel treatment-card hoverable grey white-text"
+                ng-click="openTreatmentModal(drug)">
+              {{drug}}
+            </div>
           </div>
-        </div>
        </div>
+    </div>
   </div>
 
   <!--Modals-->
@@ -73,7 +75,16 @@
       <h4>Contact</h4>
       <p>We're a team of students at Harvard Medical School and the Georgia
           Institute of Technology. For any inquiries, please reach out to
-          us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</p>
+          us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</a></p>
+    </div>
+  </div>
+
+  <div id="modal-treatment" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>{{treatment.name}}</h4>
+      <h6>Treats genes: {{treatment.treats}}</h6>
+      <p>{{treatment.description}}</p>
+      <p>Reference: {{treatment.url}}</p>
     </div>
   </div>
 </div>
