@@ -6,11 +6,18 @@ nav {
   height: 48px;
   line-height: 48px;
   box-shadow: none;
-  background-color: rgba(200, 200, 200, 0.5);
+  background-color: black;
+  color: white;
 }
 nav ul li:hover {
   background-color: inherit;
 }
+nav ul {
+  cursor: pointer;
+}
 nav a {
-  color: grey !important;
+  color: lightgrey !important;
+}
+nav img {
+  height: 48px;
 }
