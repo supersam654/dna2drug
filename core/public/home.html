@@ -2,13 +2,13 @@
   <h1 class="center"><span class="thin">DNA</span>
     <span class="">2</span>
     <span class="thin">Drug</span></h1>
-  <h5 class="center thin">Precision medicine fighting cancer</h5>
+  <h5 class="center thin">Accurate Cancer Diagnoses. Personalized Patient Treatment Plans.</h5>
   <div class="row" ng-show="awaitingInput">
     <form class="col s12 center">
       <div class="row">
         <div class="input-field col m8 s10 offset-s1 offset-m2">
           <textarea ng-model="sequence.value" id="gene" class="materialize-textarea" spellcheck="false" autofocus></textarea>
-          <label for="gene">Enter Genome Sequence</label>
+          <label for="gene">Enter DNA (exon only) Sequence</label>
         </div>
       </div>
       <a class="btn" ng-click="awaitingInput = false; processSequence(sequence);">Submit</a>
@@ -19,15 +19,15 @@
   <div class="row results-container" ng-show="!awaitingInput">
 
     <div class="col s12 center">
-      <h6 ng-show="foundMutation && !noMatch">We identified a mutation:</h6>
-      <h6 ng-show="!foundMutation && ! noMatch">We identified no mutations in: </h6>
+      <h6 ng-show="foundMutation && !noMatch"><u>Identified Mutation(s):</u></h6>
+      <h6 ng-show="!foundMutation && ! noMatch"><u>Identified No Mutations in:</h6>
       <h2>{{mutations}}</h2>
     </div>
   </div>
 
   <div class="section">
     <div class="container">
-        <span class="col s8 center" ng-show="!awaitingInput && foundMutation && !noMatch">Current treatments which may be helpful in treating cancer caused by the {{mutations}} mutation:</span>
+        <span class="col s8 center" ng-show="!awaitingInput && foundMutation && !noMatch"><i>Potential</i> treatments for your patient (mutation {{mutations}}):</span>
         <div class="row treatments-container" ng-show="!awaitingInput">
           <div ng-repeat="drug in drugs" class="col s6 m4">
             <div class="card-panel treatment-card hoverable grey white-text"
@@ -43,26 +43,22 @@
   <div id="modal-instructions" class="modal bottom-sheet">
     <div class="modal-content">
       <h4>Instructions</h4>
-      <p>Input a section of a human DNA genome into the textbox, then hit Submit.
-          Our algorithms identify the gene of interest, find mutations in the
-          gene, and determine if they are potential risk factors for breast
-          cancer. We'll even provide suggested drugs for treatment, specifically
-          for the sarcomas typical of the malformed genes.</p>
-      <p>Our science is based on published material by some of the world's
-          leading researchers. To learn more, look into "Somatic Mutations
-          and Breast Cancer"
+      <p>Input a sequence of human coding DNA (exome) into the text field. Hit 'Submit'.
+          Our algorithms identify the gene of interest and find mutation sites empirically related to incidence of breast cancer.
+          Using this and extensive databases, our servers correlate the mutation with a subset of breast cancer and determine an optimal drug/treatment regimen for the patient.
+      </p>
+      <p>Our analysis and predictive algorithms are supported by extensive empirical data regarding genetic mutations strongly correlated to tumor growth.
+          To learn more about our empirical data sets and search engine, contact us at <a href="mailto:info@memorahealth.com">info@memorahealth.com.
     </div>
   </div>
 
   <div id="modal-about" class="modal bottom-sheet">
     <div class="modal-content">
       <h4>About</h4>
-      <p>DNA2Drug is a powerful tool leveraging precision medicine to help
-          suggest potential medications to patients. We provide a way to
-          translate a patient's DNA sequence into actionable suggestions
-          for care. Our goal is to usher in a new era of digital therapeutics
-          to enhance and build upon existing patient care.</p>
-      <p>DISCLAIMER: DNA2Drug does NOT offer medical diagnoses or advice, nor
+      <p>DNA2Drug is a powerful tool leveraging computational genomics and precision medicine to revolutionize cancer diagnoses and deliver personalized treatment plans to practicing physicians instantly.
+          Our platform is capable of taking a fundamental cDNA sequence, identify specific mutations and what level of risk they put a patient at, AND determine a patient-specific drug treatment plan.
+          We aim to use digital therapeutics and computational genomics to provide oncologists with more comprehensive and accurate cancer diagnoses and personalize care delivered to patients.</p>
+      <p><b><u>DISCLAIMER:</b></u> DNA2Drug does NOT offer medical diagnoses or advice, nor
           do we promise such. We are not liable for any actions taken or
           damages occurring as a result of or coincident to accessing, viewing,
           or using our service. By using this service, you acknowledge and
@@ -73,9 +69,9 @@
   <div id="modal-contact" class="modal bottom-sheet">
     <div class="modal-content">
       <h4>Contact</h4>
-      <p>We're a team of students at Harvard Medical School and the Georgia
-          Institute of Technology. For any inquiries, please reach out to
-          us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</a></p>
+      <p>We're a team of students from Harvard Medical School and the Georgia
+          Institute of Technology. Collectively, our team brings together clinical insight from medical students and extensive development experience from engineering students to develop digital health interventions that are easy-to-use and offer substantial value to both physicians and patients.
+          For any further inquiries, feel free to contact us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</p>
     </div>
   </div>
 
