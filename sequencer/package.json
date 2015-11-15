@@ -6,6 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Kunaal Naik, Sam Marder, Kurt Carpenter",
+  "author": "Kunaal Naik, Sam Marder, Kurt Carpenter, Manav Sevak, Nisarg Patel",
   "license": "MIT"
 }
