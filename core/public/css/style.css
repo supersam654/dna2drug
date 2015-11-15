@@ -11,6 +11,9 @@ nav {
 nav ul li:hover {
   background-color: inherit;
 }
+nav ul {
+  cursor: pointer;
+}
 nav a {
   color: grey !important;
 }
