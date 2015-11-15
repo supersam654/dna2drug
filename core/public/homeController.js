@@ -23,8 +23,6 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   }
 
   function addCandidates(candidates) {
-    console.log("CANDIDATES")
-    console.log(candidates)
     $resource('http://localhost:12000/add-candidates', {}).get({
       candidates: candidates
     }).$promise.then(function successCallback(response) {
@@ -40,8 +38,6 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   function selectOptimal() {
     $resource('http://localhost:12000/get-solution', {}).get()
         .$promise.then(function successCallback(response) {
-      console.log("optimal: ")
-      console.log(response.candidates)
     }, function errorCallback(response) {
       console.log(response)
     });

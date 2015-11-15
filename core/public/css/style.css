@@ -1,3 +1,16 @@
 body {
   /*background-image: url("../img/background_dna.jpg");*/
 }
+
+nav {
+  height: 48px;
+  line-height: 48px;
+  box-shadow: none;
+  background-color: rgba(200, 200, 200, 0.5);
+}
+nav ul li:hover {
+  background-color: inherit;
+}
+nav a {
+  color: grey !important;
+}
