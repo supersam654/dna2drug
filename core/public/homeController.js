@@ -72,6 +72,17 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
     getMutations(sequence.value)
   }
 
+  $scope.getTrials = function() {
+    $resource('/getTrials', {}).get({
+      mutation: $scope.mutations
+    }).$promise.then(function successCallback(response) {
+      $scope.trials = response.trials
+      console.log('got the trials' + JSON.stringify($scope.trials))
+    }, function errorCallback(response) {
+      console.log(response)
+    })
+  }
+
   $scope.openTreatmentModal = function(drug) {
     $scope.treatment = treatmentList[drug]
     $('#modal-treatment').openModal()
