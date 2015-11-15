@@ -32,7 +32,9 @@ function findFewestDrugs() {
         solution.push(currentCandidates[0]) // so we add it (assumes first drug is optimal, which is true for this heuristic)
       } else {
         for (var j = 1; j < currentCandidates.length; j++) {
-          solution.push(currentCandidates[j])
+          if (!(solution.indexOf(currentCandidates[j] >= 0))) {
+            solution.push(currentCandidates[j])
+          }
         }
       }
     }

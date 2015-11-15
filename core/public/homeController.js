@@ -10,6 +10,7 @@ home.config(['$routeProvider', function ($routeProvider) {
 home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope, $window, $resource) {
   var possibleCandidates
   var completed = 0
+  $scope.awaitingInput = true
 
   function getCandidates(geneName) {
     $resource('http://localhost:10000/get-candidates', {}).get({

@@ -21,3 +21,17 @@ nav a {
 nav img {
   height: 48px;
 }
+
+#back-button {
+  background-color: lightgrey;
+  border-radius: 3em;
+  margin-left: 1rem;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+}
+
+.results-container {
+  background-color: #EEE;
+  margin-top:15vh;
+}

@@ -3,7 +3,7 @@
     <span class="">2</span>
     <span class="thin">Drug</span></h1>
   <h5 class="center thin">Precision medicine fighting cancer</h5>
-  <div class="row">
+  <div class="row" ng-show="awaitingInput">
     <form class="col s12 center">
       <div class="row">
         <div class="input-field col s6 offset-s3">
@@ -11,8 +11,30 @@
           <label for="gene">Enter Genome Sequence</label>
         </div>
       </div>
-      <a class="btn" ng-click="processSequence(sequence)">Submit</a>
+      <a class="btn" ng-click="awaitingInput = false; processSequence(sequence);">Submit</a>
     </form>
+  </div>
+
+  <i class="large material-icons" id="back-button" ng-click="awaitingInput = true" ng-show="!awaitingInput">navigate_before</i>
+  <div class="row results-container" ng-show="!awaitingInput">
+
+    <div class="col s12 center">
+      <h6>We identified a mutation:</h6>
+      <h2>{{mutations}}</h2>
+      <p>{{drugs}}</p>
+    </div>
+  </div>
+
+  <div class="container">
+      <span class="col s8 center" ng-show="!awaitingInput">Current treatments which may be helpful in treating cancer caused by the {{mutations}} mutation:</span>
+      <div class="row treatments-container" ng-show="!awaitingInput">
+
+        <div ng-repeat="drug in drugs" class="col s6 m4">
+          <div class="card-panel">
+            {{drug}}
+          </div>
+        </div>
+       </div>
   </div>
 
   <!--Modals-->
@@ -53,10 +75,5 @@
           Institute of Technology. For any inquiries, please reach out to
           us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</p>
     </div>
-  </div>
-
-  <div>
-    <p>{{mutations}}</p>
-    <p>{{drugs}}</p>
   </div>
 </div>
