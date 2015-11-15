@@ -64,4 +64,15 @@ home.controller('homeCtrl', ['$scope', '$window', '$resource', function ($scope,
   $scope.processSequence = function(sequence) {
     getMutations(sequence.value)
   }
+
+  $scope.getTrials = function() {
+    $resource('/getTrials', {}).get({
+      mutation: $scope.mutations
+    }).$promise.then(function successCallback(response) {
+      $scope.trials = response.trials
+      console.log('got the trials' + JSON.stringify($scope.trials))
+    }, function errorCallback(response) {
+      console.log(response)
+    })
+  }
 }])

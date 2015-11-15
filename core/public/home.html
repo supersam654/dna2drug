@@ -2,7 +2,6 @@
   <h1 class="center"><span class="thin">DNA</span>
     <span class="">2</span>
     <span class="thin">Drug</span></h1>
-  <h5 class="center thin">Precision medicine fighting cancer</h5>
   <div class="row">
     <form class="col s12 center">
       <div class="row">
@@ -15,48 +14,11 @@
     </form>
   </div>
 
-  <!--Modals-->
-  <div id="modal-instructions" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>Instructions</h4>
-      <p>Input a section of a human DNA genome into the textbox, then hit Submit.
-          Our algorithms identify the gene of interest, find mutations in the
-          gene, and determine if they are potential risk factors for breast
-          cancer. We'll even provide suggested drugs for treatment, specifically
-          for the sarcomas typical of the malformed genes.</p>
-      <p>Our science is based on published material by some of the world's
-          leading researchers. To learn more, look into "Somatic Mutations
-          and Breast Cancer"
-    </div>
-  </div>
-
-  <div id="modal-about" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>About</h4>
-      <p>DNA2Drug is a powerful tool leveraging precision medicine to help
-          suggest potential medications to patients. We provide a way to
-          translate a patient's DNA sequence into actionable suggestions
-          for care. Our goal is to usher in a new era of digital therapeutics
-          to enhance and build upon existing patient care.</p>
-      <p>DISCLAIMER: DNA2Drug does NOT offer medical diagnoses or advice, nor
-          do we promise such. We are not liable for any actions taken or
-          damages occurring as a result of or coincident to accessing, viewing,
-          or using our service. By using this service, you acknowledge and
-          agree to these terms.</p>
-    </div>
-  </div>
-
-  <div id="modal-contact" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>Contact</h4>
-      <p>We're a team of students at Harvard Medical School and the Georgia
-          Institute of Technology. For any inquiries, please reach out to
-          us at <a href="mailto:info@memorahealth.com">info@memorahealth.com</p>
-    </div>
-  </div>
 
   <div>
     <p>{{mutations}}</p>
     <p>{{drugs}}</p>
   </div>
+  <a class="btn" ng-click="getTrials()">Submit</a>
+
 </div>
