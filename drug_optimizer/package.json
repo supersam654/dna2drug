@@ -1,0 +1,11 @@
+{
+  "name": "drug_optimizer",
+  "version": "1.0.0",
+  "description": "This takes in treatment options and outputs the optimal choices.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

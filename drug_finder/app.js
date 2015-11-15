@@ -6,7 +6,6 @@ var cors = require('cors')
 app.use(cors())
 
 app.get('/get-candidates', function(req, res) {
-  console.log("REQUEST: " + req.query.gene)
   var gene = req.query.gene
   DrugFinder.getCandidates(gene, function(result) {
     res.json({candidates: result})
