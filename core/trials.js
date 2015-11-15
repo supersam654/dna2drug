@@ -3,6 +3,8 @@ var fs = require('fs')
 var request = require('request')
 var AdmZip = require('adm-zip')
 
+// This was started at aound 5:00 AM and finished at 7:00 AM after coding for the past 12 hours.
+// Please don't judge.
 exports.getTrials = function(mutation, callback) {
   var mutation_url = ''
   if (!mutation.includes('_')) {
@@ -22,7 +24,7 @@ exports.getTrials = function(mutation, callback) {
 
       zipEntries.forEach(function(zipEntry) {
          var text = zip.readAsText(zipEntry)
-         var regex = new RegExp("Study [1-9]");
+         var regex = new RegExp("Study [1-9]")
          var textArr = text.split(regex)
          var studies = []
          for (var i = 1; i < textArr.length; i++) {
