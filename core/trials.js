@@ -7,7 +7,7 @@ var AdmZip = require('adm-zip')
 // Please don't judge.
 exports.getTrials = function(mutation, callback) {
   var mutation_url = ''
-  if (!mutation.indexOf('_') !== -1) {
+  if (!mutation.indexOf('_') === -1) {
     mutation_url = mutation
   } else {
     mutation_url = mutation.substring(0, mutation.indexOf('_'))
